@@ -1,6 +1,5 @@
 use arrayfire::*;
-use std::sync::atomic::{AtomicBool, Ordering};
-use std::sync::{Arc, RwLock, mpsc};
+use std::sync::{Arc, RwLock};
 use std::thread;
 use std::time::Duration;
 
@@ -32,7 +31,7 @@ impl Sim {
         let dims = self.dims.clone();
         let wlock = self.colors.clone();
 
-        Some(thread::spawn(move || {
+        thread::spawn(move || {
             set_device(0);
             let mut b = constant::<u8>(1u8, dims);
             for i in 0..500000 {
@@ -45,7 +44,7 @@ impl Sim {
                     }
                 }
             }
-        }));
+        });
     }
     fn data(&mut self) {
         let read_guard = self.colors.read().unwrap();

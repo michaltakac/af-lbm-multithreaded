@@ -22,8 +22,8 @@ fn stream(f: &Array<FloatNum>) -> Array<FloatNum> {
 
 fn lbm() {
     // Grid length, number and spacing
-    let nx: u64 = 700;
-    let ny: u64 = 300;
+    let nx: u64 = 300;
+    let ny: u64 = 100;
 
     let total_nodes = nx * ny;
 
